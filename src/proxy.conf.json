@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "http://ussr-lab.ru:8020",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

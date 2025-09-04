@@ -1,0 +1,127 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-weight: 300;
+  font-family: 'VTB Group';
+  font-style: normal;
+  src:
+    local('VTB Group Light'),
+    url('./assets/fonts/vtbgroup-light.woff2') format('woff2'),
+    url('./assets/fonts/vtbgroup-light.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 300;
+  font-family: 'VTB Group';
+  font-style: italic;
+  src:
+    local('VTB Group Light Oblique'),
+    url('./assets/fonts/vtbgroup-lightoblique.woff2') format('woff2'),
+    url('./assets/fonts/vtbgroup-lightoblique.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: 'VTB Group';
+  font-style: normal;
+  src:
+    local('VTB Group Book'),
+    url('./assets/fonts/vtbgroup-book.woff2') format('woff2'),
+    url('./assets/fonts/vtbgroup-book.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: 'VTB Group';
+  font-style: italic;
+  src:
+    local('VTB Group Book Oblique'),
+    url('./assets/fonts/vtbgroup-bookoblique.woff2') format('woff2'),
+    url('./assets/fonts/vtbgroup-bookoblique.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: 'VTB Group';
+  font-style: normal;
+  src:
+    local('VTB Group Book'),
+    url('./assets/fonts/vtbgroup-book.woff2') format('woff2'),
+    url('./assets/fonts/vtbgroup-book.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: 'VTB Group';
+  font-style: italic;
+  src:
+    local('VTB Group Book Oblique'),
+    url('./assets/fonts/vtbgroup-bookoblique.woff2') format('woff2'),
+    url('./assets/fonts/vtbgroup-bookoblique.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 600;
+  font-family: 'VTB Group';
+  font-style: normal;
+  src:
+    local('VTB Group Demi Bold'),
+    url('./assets/fonts/vtbgroup-demibold.woff2') format('woff2'),
+    url('./assets/fonts/vtbgroup-demibold.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 600;
+  font-family: 'VTB Group';
+  font-style: italic;
+  src:
+    local('VTB Group Demi Bold Oblique'),
+    url('./assets/fonts/vtbgroup-demiboldoblique.woff2') format('woff2'),
+    url('./assets/fonts/vtbgroup-demiboldoblique.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 700;
+  font-family: 'VTB Group';
+  font-style: normal;
+  src:
+    local('VTB Group Bold'),
+    url('./assets/fonts/vtbgroup-bold.woff2') format('woff2'),
+    url('./assets/fonts/vtbgroup-bold.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-weight: 700;
+  font-family: 'VTB Group';
+  font-style: italic;
+  src:
+    local('VTB Group Bold Oblique'),
+    url('./assets/fonts/vtbgroup-boldoblique.woff2') format('woff2'),
+    url('./assets/fonts/vtbgroup-boldoblique.woff') format('woff');
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+body {
+  background-color: #fff;
+  font-family: 'VTB Group', -apple-system, 'BlinkMacSystemFont', system-ui, 'Roboto', 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+}
