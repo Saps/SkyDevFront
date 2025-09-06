@@ -1,0 +1,51 @@
+.card {
+  border-left: 0.25rem solid #d1d5db;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.0625rem 0.1875rem 0 rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+
+  &.high-score {
+    border-left-color: #8b5cf6;
+  }
+
+  &.mid-score {
+    border-left-color: #3b82f6;
+  }
+}
+
+.card-avatar {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card-label {
+  color: #6b7280;
+  font-size: 1rem;
+
+  .high-score {
+    color: #8b5cf6;
+  }
+
+  .mid-score {
+    color: #3b82f6;
+  }
+}
+
+.card-tag {
+  background-color: #dbeafe;
+  border-radius: 0.75rem;
+  color: #1e40af;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}

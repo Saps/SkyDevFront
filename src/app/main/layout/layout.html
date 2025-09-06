@@ -1,0 +1,25 @@
+<div class="common-layout">
+  <header>
+    <mat-icon [svgIcon]="'vtb-logo'" />
+    <mat-icon [fontIcon]="'person'" />
+  </header>
+  <div [style.display]="'flex'" [style.gap.rem]="1.5">
+    <aside [style.width.rem]="isCollapsed() ? 3.25 : 13.375">
+      <mat-icon
+        role="button"
+        class="collapse-btn"
+        [fontIcon]="isCollapsed() ? 'chevron_right' : 'chevron_left'"
+        (click)="isCollapsed.set(!isCollapsed())"
+      />
+      @for (it of sbItems; let i = $index; track it.link) {
+        <a [class]="'sidebar-item' + (activeIndex() === i ? ' _active' : '')" [routerLink]="activeIndex() === i ? null : it.link">
+          <mat-icon [fontIcon]="it.icon" [style]="{ color: activeIndex() === i ? '#343dff' : '#9d9d9d', 'flex-shrink': 0 }" />
+          <span [class]="'l-text_body_middle' + (isCollapsed() ? ' collapsed' : '')">{{ it.label }}</span>
+        </a>
+      }
+    </aside>
+    <main [style.width]="'calc(100% - ' + (isCollapsed() ? 4.75 : 14.875) + 'rem)'">
+      <router-outlet />
+    </main>
+  </div>
+</div>

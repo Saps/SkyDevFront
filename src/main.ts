@@ -1,5 +1,6 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { App } from '@app/app';
@@ -11,6 +12,7 @@ const providers = [
   provideZonelessChangeDetection(),
   provideHttpClient(withInterceptors([jwtInterceptor])),
   provideRouter(routes),
+  { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
 ];
 
 bootstrapApplication(App, { providers }).catch((err) => console.error(err));
