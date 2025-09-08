@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconButton } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
@@ -6,6 +7,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { CANDIDATES } from '@app/main/home/candidates';
+import { Common } from '@app/services';
 
 const isHigh = (score: number) => score >= 90;
 const isMid = (score: number) => score >= 80 && score < 90;
@@ -17,7 +19,7 @@ const isMid = (score: number) => score >= 80 && score < 90;
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class Home {
+export default class Home implements OnInit {
   ranking = 0;
   search = '';
   vacType = '';
@@ -30,6 +32,13 @@ export default class Home {
     { key: 'BE', value: 'Backend Developer' },
     { key: 'DS', value: 'Data Scientist' },
   ];
+
+  private readonly common = inject(Common);
+  private readonly destroyRef = inject(DestroyRef);
+
+  ngOnInit() {
+    this.common.load().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
+  }
 
   get candidates() {
     const search = this.search.toLowerCase();

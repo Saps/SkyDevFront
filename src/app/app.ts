@@ -1,12 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
-function addIcons(icons: string[], registry: MatIconRegistry, ds: DomSanitizer): undefined {
-  icons.forEach((name) => registry.addSvgIcon(name, ds.bypassSecurityTrustResourceUrl(`../assets/images/${name}.svg`)));
-  return undefined;
-}
+const icons = ['vtb-logo'];
 
 @Component({
   selector: 'app-root',
@@ -14,5 +11,7 @@ function addIcons(icons: string[], registry: MatIconRegistry, ds: DomSanitizer):
   template: '<router-outlet />',
 })
 export class App {
-  private readonly $ = addIcons(['vtb-logo'], inject(MatIconRegistry), inject(DomSanitizer));
+  constructor(registry: MatIconRegistry, ds: DomSanitizer) {
+    icons.forEach((name) => registry.addSvgIcon(name, ds.bypassSecurityTrustResourceUrl(`../assets/images/${name}.svg`)));
+  }
 }
