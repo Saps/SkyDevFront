@@ -1,63 +1,36 @@
-<div class="filters">
-  <mat-form-field subscriptSizing="dynamic">
-    <mat-label>Тип вакансии</mat-label>
-    <mat-select [(ngModel)]="vacType">
-      @for (type of vacTypes; track type) {
-        <mat-option [value]="type.key">{{type.value}}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field subscriptSizing="dynamic">
-    <mat-label>Ранжирование</mat-label>
-    <mat-select [(ngModel)]="ranking">
-      @for (it of rankings; track it) {
-        <mat-option [value]="it.key">{{it.value}}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field subscriptSizing="dynamic">
-    <mat-label>Поиск кандидатов</mat-label>
-    <input matInput type="text" [(ngModel)]="search">
-    @if (search) {
-      <button matSuffix matIconButton aria-label="clear" (click)="search = ''">
-        <mat-icon>close</mat-icon>
-      </button>
-    }
-  </mat-form-field>
-</div>
 <div [style]="{ display: 'flex', 'flex-direction': 'column', gap: '1rem' }">
-  @for (cdt of candidates; track cdt.id) {
-    <div class="card" [class.high-score]="isHigh(cdt.resumeScore)" [class.mid-score]="isMid(cdt.resumeScore)">
-      <div [style]="{ display: 'flex', 'align-items': 'center', gap: '1rem' }">
-        <img [alt]="cdt.name" [src]="cdt.photo" class="card-avatar">
-        <div>
-          <p [style.margin-bottom.rem]="0.25">
-            <b [style.margin-right.rem]="0.25">{{ cdt.name }}</b>
-            <span class="card-label">{{ `(опыт: ${cdt.experience})` }}</span>
-          </p>
+  @for (cdt of vacancies(); track cdt.id) {
+    <div class="card">
+      <div>
+        <p>
+          <b [style.font-size.rem]="1.5" [style.margin-right.rem]="0.25">{{ cdt.name }}</b>
+          <span [style]="{ color: '#6b7280', 'font-size': '1.25rem' }">
+            {{ `(${cdt.region}, от ${cdt.income})` }}
+          </span>
+        </p>
+        <p [style.margin-top.rem]="0.5">
+          {{ `Краткое описание: ${cdt.requirements}` }}
+        </p>
+        <p [style.margin-top.rem]="0.5">
+          {{ `Обязанности: ${cdt.duties}` }}
+        </p>
+        <div [style.margin-top.rem]="0.5">
           <div [style]="{ display: 'flex', 'flex-wrap': 'wrap', gap: '0.25rem' }">
-            @for (skill of cdt.skills; track skill) {
+            <span>Что нужно знать:</span>
+            @for (skill of cdt.software_skills.split(' '); track skill) {
+              <span class="card-tag">{{ skill }}</span>
+            }
+            @for (skill of cdt.software_knowledges.split(', '); track skill) {
               <span class="card-tag">{{ skill }}</span>
             }
           </div>
         </div>
-        <div [style.flex-shrink]="0" [style.margin-left]="'auto'">
-          <p class="card-label">
-            Резюме: <span [class.high-score]="isHigh(cdt.resumeScore)" [class.mid-score]="isMid(cdt.resumeScore)">{{
-              cdt.resumeScore
-            }}</span>
-          </p>
-          <p class="card-label">
-            AI оценка: <span [class.high-score]="isHigh(cdt.aiInterviewScore ?? 0)" [class.mid-score]="isMid(cdt.aiInterviewScore ?? 0)">{{
-              cdt.aiInterviewScore ?? '–'
-            }}</span>
-          </p>
-        </div>
       </div>
+      <a class="card-link" [routerLink]="[cdt.id]">Кандидаты</a>
     </div>
   } @empty {
     <p [style]="{ color: '#6b7280', 'font-size': '1.25rem', 'text-align': 'center' }">
-      Не удалось найти кандидатов
+      {{ loader() ? 'Пожалуйста, подождите' : 'Не удалось найти вакансии' }}
     </p>
   }
 </div>

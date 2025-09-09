@@ -1,0 +1,33 @@
+<div [style]="{ display: 'flex', 'flex-direction': 'column', gap: '1rem' }">
+  <app-breadcrumb />
+  @for (cdt of candidates(); track cdt.id) {
+    <div class="card" [class.high-score]="isHigh(cdt.compliance)" [class.mid-score]="isMid(cdt.compliance)">
+      <p>
+        <b [style.font-size.rem]="1.5" [style.margin-right.rem]="0.25">{{ cdt.fio }}</b>
+        <span [style]="{ color: '#6b7280', 'font-size': '1.25rem' }">{{ `(${cdt.town})` }}</span>
+      </p>
+      <div [style]="{ display: 'flex', 'align-items': 'center', gap: '1rem', 'margin-top': '0.5rem' }">
+        <img [alt]="cdt.fio" [src]="photo" class="card-avatar">
+        <p class="card-label">
+          Резюме: <span [class.high-score]="isHigh(cdt.compliance)" [class.mid-score]="isMid(cdt.compliance)">{{
+            cdt.compliance
+          }}</span>
+        </p>
+        <p class="card-label">
+          AI оценка: <span [class.high-score]="isHigh(cdt.reliability)" [class.mid-score]="isMid(cdt.reliability)">{{
+            cdt.reliability
+          }}</span>
+        </p>
+        <p class="card-label">
+          Пройдено: <span [class.high-score]="isHigh(cdt.compliance)" [class.mid-score]="isMid(cdt.compliance)">{{
+            `${cdt.compliance} %`
+          }}</span>
+        </p>
+      </div>
+    </div>
+  } @empty {
+    <p [style]="{ color: '#6b7280', 'font-size': '1.25rem', 'text-align': 'center' }">
+      {{ loader() ? 'Пожалуйста, подождите' : 'Не удалось найти кандидатов' }}
+    </p>
+  }
+</div>

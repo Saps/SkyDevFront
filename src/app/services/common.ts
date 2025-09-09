@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { API } from '@app/constants';
+import { ICandidate, IVacancy } from '@app/models';
 
 @Injectable({ providedIn: 'root' })
 export class Common {
@@ -11,7 +12,11 @@ export class Common {
   }
 
   load() {
-    return this.http.get(`${API}/load/?format=json`);
+    return this.http.get<IVacancy[]>(`${API}/load/?format=json`);
+  }
+
+  loadById(id: string) {
+    return this.http.get<ICandidate[]>(`${API}/load/${id}/?format=json`);
   }
 
   profile() {

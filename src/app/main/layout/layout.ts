@@ -13,7 +13,7 @@ export class Layout {
   readonly activeIndex = signal(-1);
   readonly isCollapsed = signal(false);
   readonly sbItems = [
-    { icon: 'home', label: 'Главная', link: '/home' },
+    { icon: 'home', label: 'Вакансии', link: '/home' },
   ];
 
   private readonly $ = inject(Router).events.pipe(takeUntilDestroyed()).subscribe((res) => {

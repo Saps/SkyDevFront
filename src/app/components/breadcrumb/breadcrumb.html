@@ -1,0 +1,48 @@
+<nav aria-label="breadcrumb" class="l-breadcrumb-root {{ class }}">
+  <ol class="l-breadcrumb-list">
+    @for (br of breadcrumbs$ | async; track br; let count = $count; let index = $index) {
+      <li class="l-breadcrumb-item">
+        @if (index < count - 1) {
+          <a
+            rel="noopener noreferrer"
+            class="l-breadcrumb-link"
+            [attr.aria-disabled]="br.disable"
+            [attr.tabIndex]="br.disable ? -1 : 0"
+            [class.l-breadcrumb-link-disabled]="br.disable"
+            [fragment]="preserveFragment ? br.fragment : undefined"
+            [routerLink]="br.routeInterceptor?.(br.routeLink ?? '', br) ?? br.routeLink"
+            [queryParams]="preserveQueryParams ? br.queryParams : null"
+            [target]="anchorTarget"
+          >
+            <ng-template
+              [ngTemplateOutlet]="itemTemplate"
+              [ngTemplateOutletContext]="{ $implicit: br.label, count, first: index < 1, index, info: br.info, last: false }"
+            />
+            @if (!itemTemplate) {
+              {{ br.label }}
+            }
+          </a>
+        }
+        @if (index > count - 2) {
+          <label class="l-breadcrumb-trail">
+            <ng-template
+              [ngTemplateOutlet]="itemTemplate"
+              [ngTemplateOutletContext]="{ $implicit: br.label, count, first: false, index, info: br.info, last: true }"
+            />
+            @if (!itemTemplate) {
+              {{ br.label }}
+            }
+          </label>
+        }
+      </li>
+      @if (index < count - 1) {
+        <li aria-hidden="true" class="l-breadcrumb-separator">
+          <ng-template [ngTemplateOutlet]="separatorTemplate" />
+          @if (!separatorTemplate) {
+            {{ separator }}
+          }
+        </li>
+      }
+    }
+  </ol>
+</nav>
