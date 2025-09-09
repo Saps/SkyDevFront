@@ -1,26 +1,28 @@
-<div [style]="{ display: 'flex', 'flex-direction': 'column', gap: '1rem' }">
+<div [style]="{ display: 'flex', 'flex-direction': 'column', gap: '1rem', 'margin-bottom': '1rem' }">
   <app-breadcrumb />
   @for (cdt of candidates(); track cdt.id) {
     <div class="card" [class.high-score]="isHigh(cdt.compliance)" [class.mid-score]="isMid(cdt.compliance)">
       <p>
         <b [style.font-size.rem]="1.5" [style.margin-right.rem]="0.25">{{ cdt.fio }}</b>
-        <span [style]="{ color: '#6b7280', 'font-size': '1.25rem' }">{{ `(${cdt.town})` }}</span>
+        @if (cdt.town) {
+          <span [style]="{ color: '#6b7280', 'font-size': '1.25rem' }">{{ `(${cdt.town})` }}</span>
+        }
       </p>
       <div [style]="{ display: 'flex', 'align-items': 'center', gap: '1rem', 'margin-top': '0.5rem' }">
         <img [alt]="cdt.fio" [src]="photo" class="card-avatar">
         <p class="card-label">
           Резюме: <span [class.high-score]="isHigh(cdt.compliance)" [class.mid-score]="isMid(cdt.compliance)">{{
-            cdt.compliance
+            cdt.compliance.toLocaleString('ru', { maximumSignificantDigits: 1 })
           }}</span>
         </p>
         <p class="card-label">
           AI оценка: <span [class.high-score]="isHigh(cdt.reliability)" [class.mid-score]="isMid(cdt.reliability)">{{
-            cdt.reliability
+            cdt.reliability.toLocaleString('ru', { maximumSignificantDigits: 1 })
           }}</span>
         </p>
         <p class="card-label">
           Пройдено: <span [class.high-score]="isHigh(cdt.compliance)" [class.mid-score]="isMid(cdt.compliance)">{{
-            `${cdt.compliance} %`
+            (cdt.compliance / 100).toLocaleString('ru', { maximumSignificantDigits: 1, style: 'percent' })
           }}</span>
         </p>
       </div>

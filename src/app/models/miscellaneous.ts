@@ -7,6 +7,14 @@ export interface ICandidate {
   reliability: number;
 }
 
+export interface IStatParam {
+  id: number;
+  ordernum: number;
+  name: string;
+  caption: string;
+  value: number;
+}
+
 export interface IVacancy {
   id: string;
   name: string;

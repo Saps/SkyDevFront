@@ -22,6 +22,7 @@ export const routes = [
           },
         ],
       },
+      { path: 'stat-params', loadComponent: () => import('@app/main/stat-params/stat-params') },
       { path: '', pathMatch: 'full', redirectTo: 'home' },
     ],
   },

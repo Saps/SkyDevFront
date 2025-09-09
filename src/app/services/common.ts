@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { API } from '@app/constants';
-import { ICandidate, IVacancy } from '@app/models';
+import { ICandidate, IStatParam, IVacancy } from '@app/models';
 
 @Injectable({ providedIn: 'root' })
 export class Common {
@@ -21,6 +21,10 @@ export class Common {
 
   profile() {
     return this.http.get(`${API}/empprofile/?format=json`);
+  }
+
+  statParam() {
+    return this.http.get<{ results: IStatParam[] }>(`${API}/statparam/?format=json`);
   }
 
   vacancies() {
